@@ -31,8 +31,11 @@ const Footer = () => {
                           <p>email: support@barber.com</p>
                           <p>Saturday and sunday closed</p>
                     </Grid>
+                    
                  </Grid>
+                 
              </Container>
+             <p style={{ textAlign:"center",marginBottom:"0", paddingBottom:"10px" }}>©2022 HairMaxSalon || All rights Reserved</p>
         </div>
     );
 };

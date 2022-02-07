@@ -9,12 +9,14 @@ const serviceSlice = createSlice({
     },
     reducers:{ 
         makeAnAppointment:(state, action)=>{
-            // console.log(action,state)
+            
+            console.log(action,state)
             state.appointments.push(action.payload)
         },
         removeFromAppointment:(state, {payload})=>{
             // console.log(state, payload)
-           state.appointments = state.appointments.filter(appointment=> appointment.key !== payload.key)
+           const restAppointments = state.appointments.filter(appointment=> appointment.name !== payload.name)
+           state.appointments = restAppointments
         }
     }
    

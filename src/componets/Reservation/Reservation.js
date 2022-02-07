@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ReservationImg from '../../images/reservation-chair.jpg'
 const Reservation = () => {
     const reservationBg={
@@ -21,7 +22,7 @@ const Reservation = () => {
                 <Typography variant='body2'>
                 We create styles for the way you look and the way you live!
                 </Typography>
-                <button className='explore-btn'>Click Here Now</button>
+                <Link to="/services"><button className='explore-btn'>Click Here Now</button></Link>
             </Box>
         </div>
     );

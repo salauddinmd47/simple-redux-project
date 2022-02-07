@@ -1,11 +1,4 @@
-import React, { useEffect, useState } from 'react'; 
- 
-import carosule1 from '../../images/carosel4.png'
-import carosule2 from '../../images/carosel5.png'
-import carosule3 from '../../images/carosel1-modified.png'
-import carosule4 from '../../images/carosel3-modified.png'
-import carosule5 from '../../images/carosel6.png'
-import carosule6 from '../../images/carsel2-modified.png'
+import React, { useEffect, useState } from 'react';  
 
 import {Container, Grid, Typography} from '@mui/material'
 import { Box } from '@mui/system';

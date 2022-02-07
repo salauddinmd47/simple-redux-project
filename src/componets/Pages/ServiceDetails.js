@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Typography,Box,Container } from '@mui/material';
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import{ makeAnAppointment} from '../../redux/Slice/servicesSlice'
@@ -27,7 +27,9 @@ const ServiceDetails = () => {
                      <Typography sx={{ mb:2,color:'#744730' }} variant='subtitle1'><span style={{ fontWeight:"700", color:"black" }}>Appointment:</span>{appointment}</Typography>
                      <Typography sx={{ mb:2,color:'#744730' }} variant='body1'><span style={{ fontWeight:"700", color:"black" }}>time:</span> {timeZone}</Typography>
                      <Typography sx={{ mb:2,color:'#744730' }} variant='h6'><span style={{ fontWeight:"700", color:"black" }}>Price:</span> $ {price}</Typography> 
-                     <button onClick={()=> dispatch(makeAnAppointment(selectedService))} className='explore-btn'>Book Appointment</button>
+                    <Link to ={`/booking/${serviceId}`}>
+                    <button   className='explore-btn'>Book Appointment</button>
+                    </Link>
                 </Grid>
             </Grid>
 
