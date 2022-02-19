@@ -4,13 +4,19 @@ import {Link, useParams} from 'react-router-dom'
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import{ makeAnAppointment} from '../../redux/Slice/servicesSlice'
+import { useGetAllServicesQuery } from '../../redux/Slice/serviceApi';
 const ServiceDetails = () => {
     const {serviceId} =  useParams()
     const dispatch = useDispatch()
 
-    const services = useSelector((state)=> state.services.services)
-    const selectedService = services?.find(service=> service.key ==serviceId) 
-
+    // const services = useSelector((state)=> state.services.services)
+    // const selectedService = services?.find(service=> service.key ==serviceId) 
+    const {data, isLoading} = useGetAllServicesQuery()
+    
+    if(isLoading){
+        return <h2>Loading....</h2>
+    }
+    const selectedService = data?.find(service=> service.key ==serviceId) 
     const {name, thumbNail, description, tag, price, timeZone, category, appointment} = selectedService;
     return (
         <Box>

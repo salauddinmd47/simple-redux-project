@@ -1,16 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit'
-import allServices from '../../fakeData/fakeData.json'
+import { createSlice } from '@reduxjs/toolkit' 
 
 const serviceSlice = createSlice({
     name:'service',
-    initialState:{
-        services:allServices,
+    initialState:{ 
         appointments:[]
     },
     reducers:{ 
-        makeAnAppointment:(state, action)=>{
-            
-            console.log(action,state)
+        makeAnAppointment:(state, action)=>{  
             state.appointments.push(action.payload)
         },
         removeFromAppointment:(state, {payload})=>{

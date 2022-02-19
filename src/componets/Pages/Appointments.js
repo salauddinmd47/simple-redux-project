@@ -12,27 +12,35 @@ import {
   IconButton,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux"; 
-import DeleteIcon from '@mui/icons-material/Delete';
-import { removeFromAppointment } from "../../redux/Slice/servicesSlice";
+import React from "react"; 
+import DeleteIcon from '@mui/icons-material/Delete'; 
+import { useDeleteAppointmentMutation, useGetAllAppointmentsQuery } from "../../redux/Slice/serviceApi";
 import {useHistory} from 'react-router-dom'
-const Appointments = () => {
-  const appointments = useSelector((state) => state.services.appointments);
-    const dispatch = useDispatch()
+import useAuth from '../../hooks/useAuth'
+const Appointments = () => { 
     const history = useHistory()
+    const {user} = useAuth()
+    console.log(user.email)
 
-    const handleRemoveAppointment = (appointment)=>{
+    const {data, isLoading,refetch} = useGetAllAppointmentsQuery(user?.email)
+   
+  const  [deleteAppointment] = useDeleteAppointmentMutation()
+    const handleRemoveAppointment = (id)=>{
        const proceed =  window.confirm("do you want to delete you appointment")
         if(proceed){
-            dispatch(removeFromAppointment(appointment))
+            deleteAppointment(id)
+            refetch()
+           
         }
         
+    }
+    if(isLoading){
+      return <h2>Loading .....</h2> 
     }
   return (
     <div style={{ minHeight: "80VH" }}>
       {
-          appointments.length? <Box sx={{ textAlign: "center", mt: 6, color: "#CAB4A9" }}>
+          data.length? <Box sx={{ textAlign: "center", my: 6, color: "#CAB4A9" }}>
           <Typography variant="h6">APPOINTMENTS</Typography>
           <Typography variant="h4">
             Mange Your All Appointment From Here
@@ -43,38 +51,38 @@ const Appointments = () => {
       }
       <Container>
         {
-          appointments.length ? <TableContainer component={Paper}>
+          data.length ? <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
-                <TableRow>
-                  <TableCell>Client Name</TableCell>
-                  <TableCell align="right">Service Name</TableCell>
-                  <TableCell align="right">Date</TableCell>
-                  <TableCell align="right">Email</TableCell>
-                  <TableCell align="right">Remove</TableCell>
+                <TableRow sx={{ backgroundColor:'black',}}>
+                  <TableCell sx={{ color:'white',fontWeight:"bold"  }}>Client Name</TableCell>
+                  <TableCell sx={{ color:'white',fontWeight:"bold"  }} align="right">Service Name</TableCell>
+                  <TableCell sx={{ color:'white',fontWeight:"bold"  }} align="right">Date</TableCell>
+                  <TableCell sx={{ color:'white',fontWeight:"bold"  }} align="right">Email</TableCell>
+                  <TableCell sx={{ color:'white',fontWeight:"bold"  }} align="right">Remove</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {appointments.map((appointment) => (
+                { data.map((appointment,index) => (
                   <TableRow
-                    key={appointment.userName}
+                    key={index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
                       {appointment.userName}
                     </TableCell>
                     <TableCell sx={{ textAlign:"right" }} component="th" scope="row">
-                      {appointment.name}
+                      {appointment.serviceName}
                     </TableCell>
                     <TableCell align="right">{appointment.date}</TableCell>
                     <TableCell align="right">{appointment.email}</TableCell>
                     <TableCell align="right">
-                     <IconButton onClick={()=> handleRemoveAppointment(appointment)} aria-label="delete">
+                     <IconButton onClick={()=> handleRemoveAppointment(appointment._id)} aria-label="delete">
                       <DeleteIcon />
                       </IconButton>
                     </TableCell>
                   </TableRow>
-                ))}
+                )) }
               </TableBody>
             </Table>
           </TableContainer>: <div style={{ textAlign:"center" }}>

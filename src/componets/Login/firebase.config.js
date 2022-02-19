@@ -1,9 +1,9 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyDe0uoUJ_dgXfTqb5b26IjcsNK-IojzZik",
-    authDomain: "fir-intro-2ae9d.firebaseapp.com",
-    projectId: "fir-intro-2ae9d",
-    storageBucket: "fir-intro-2ae9d.appspot.com",
-    messagingSenderId: "82401635060",
-    appId: "1:82401635060:web:3a45c2472db0b02fe40ca1"
+  apiKey: "AIzaSyAhfZtcCyFVv4fCKkbWWK2gS7sroN4DS_I",
+  authDomain: "hairmaxsalon-315a1.firebaseapp.com",
+  projectId: "hairmaxsalon-315a1",
+  storageBucket: "hairmaxsalon-315a1.appspot.com",
+  messagingSenderId: "863825949618",
+  appId: "1:863825949618:web:15fb240387a0c04ca12aab"
   };
   export default firebaseConfig;

@@ -14,15 +14,14 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import navImg from "../images/logo-normal.svg";
-import { useSelector } from "react-redux";
+import navImg from "../images/logo-normal.svg"; 
 import useAuth from "../hooks/useAuth";
 const Navbar = () => {
   const [state, setState] = React.useState(false);
   const theme = useTheme();
   const { user, logOut } = useAuth();
 
-  const appointments = useSelector((state) => state.services.appointments);
+   
   const useStyles = makeStyles({
     navItem: {
       textDecoration: "none",
@@ -103,7 +102,7 @@ const Navbar = () => {
               className={`${navIcon} 'bi bi-list'`}
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
               />
             </svg>
@@ -129,16 +128,16 @@ const Navbar = () => {
               </Link>
               <Link className={navItem} to="/appointments">
                 <Button color="inherit">
-                  Appointments{" "}
+                  Appointments 
                   <span
                     style={{
-                      color: "yellow",
-                      marginLeft: "2px",
+                      color: "tomato",
+                      marginLeft: "5px",
                       fontWeight: "bold",
                     }}
                   >
-                    {appointments.length}
-                  </span>{" "}
+                     {user?.displayName}
+                  </span> 
                 </Button>
               </Link>
               <Link className={loginButton} to="/login">
